@@ -1,0 +1,280 @@
+/* ===================================
+   Login Screen Styles
+   =================================== */
+
+.login-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.login-screen::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 70%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 30%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+    animation: gradientShift 20s ease infinite;
+    pointer-events: none;
+}
+
+.login-container {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: var(--border-radius);
+    box-shadow: 0 20px 60px var(--shadow-lg);
+    border: 1px solid var(--border);
+    padding: 3rem 2.5rem;
+    max-width: 420px;
+    width: 90%;
+    position: relative;
+    z-index: 1;
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.login-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+.login-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.login-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.login-form {
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.password-input {
+    width: 100%;
+    padding: 1.125rem 1.25rem;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius-sm);
+    background: var(--bg-secondary);
+    backdrop-filter: blur(10px);
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: var(--transition);
+    box-shadow: 0 2px 8px var(--shadow);
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.password-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--bg-glass);
+    box-shadow: 0 0 0 4px var(--shadow), 0 4px 16px var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.password-input::placeholder {
+    color: var(--text-tertiary);
+    letter-spacing: normal;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 1.125rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 4px 16px var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-login:hover::before {
+    left: 100%;
+}
+
+.btn-login:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 24px var(--shadow-lg);
+}
+
+.btn-login:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.btn-arrow {
+    font-size: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-login:hover .btn-arrow {
+    transform: translateX(4px);
+}
+
+.login-error {
+    margin-top: 1rem;
+    padding: 0.875rem 1.25rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: var(--border-radius-sm);
+    color: var(--danger);
+    font-weight: 600;
+    text-align: center;
+    animation: shake 0.5s ease-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.login-error.hidden {
+    display: none;
+}
+
+.login-footer {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.back-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-link:hover {
+    color: var(--primary);
+    transform: translateX(-4px);
+}
+
+/* Admin Content */
+.admin-content {
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+.admin-content.hidden {
+    display: none;
+    opacity: 0;
+}
+
+/* Success animation */
+@keyframes successPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 16px var(--shadow);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 32px var(--shadow-lg);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 16px var(--shadow);
+    }
+}
+
+.btn-login.success {
+    animation: successPulse 0.5s ease-out;
+    background: linear-gradient(135deg, var(--success), #34d399);
+}
+
+/* Loading state */
+.btn-login.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.btn-login.loading .btn-arrow {
+    animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 2.5rem 2rem;
+    }
+
+    .login-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .login-icon {
+        font-size: 3.5rem;
+    }
+}

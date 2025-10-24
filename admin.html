@@ -8,11 +8,51 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/login.css">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="login-icon">🔐</div>
+                <h1>Admin Panel</h1>
+                <p>Ange lösenord för att fortsätta</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <input
+                        type="password"
+                        id="passwordInput"
+                        class="password-input"
+                        placeholder="Lösenord"
+                        autocomplete="off"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <span class="btn-text">Logga in</span>
+                    <span class="btn-arrow">→</span>
+                </button>
+
+                <div id="loginError" class="login-error hidden">
+                    ❌ Felaktigt lösenord
+                </div>
+            </form>
+
+            <div class="login-footer">
+                <a href="index.html" class="back-link">← Tillbaka till kartan</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Admin Content (hidden until login) -->
+    <div id="adminContent" class="admin-content hidden">
     <!-- Header -->
     <header class="header">
         <div class="header-content">
@@ -197,8 +237,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
     <!-- Custom JS -->
+    <script src="js/auth.js"></script>
     <script src="js/geocoding.js"></script>
     <script src="js/data.js"></script>
     <script src="js/admin.js"></script>
+    </div>
 </body>
 </html>
