@@ -1,0 +1,61 @@
+=====================================================
+  INTERAKTIV KARTAPP - SNABBSTART
+=====================================================
+
+ENKLASTE SÄTTET ATT KOMMA IGÅNG:
+
+1. Dubbelklicka på "index.html" för att öppna kartan
+   ELLER
+   Dubbelklicka på "admin.html" för admin-panelen
+
+2. Första gången tar det 1-2 minuter att ladda
+   (geocoding av alla destinationer)
+
+3. Nästa gång går det snabbt!
+   (data sparas i webbläsaren)
+
+=====================================================
+
+ALTERNATIVT (REKOMMENDERAT FÖR BÄSTA RESULTAT):
+
+Använd en lokal webbserver:
+
+Med Python (om du har det installerat):
+  1. Öppna terminal/kommandotolk i denna mapp
+  2. Kör: python -m http.server 8000
+  3. Öppna webbläsare: http://localhost:8000
+
+Med Node.js:
+  1. Öppna terminal i denna mapp
+  2. Kör: npx http-server
+  3. Öppna adressen som visas
+
+Med VS Code Live Server:
+  1. Installera "Live Server" extension
+  2. Högerklicka på index.html
+  3. Välj "Open with Live Server"
+
+=====================================================
+
+FUNKTIONER:
+
+KARTA (index.html):
+- Se alla utbyten på kartan
+- Filtrera per kategori, aktivitet, skola
+- Sök i alla fält
+- Byt mellan dark/light mode
+- Klicka på pins för detaljer
+
+ADMIN (admin.html):
+- Lägg till nya utbyten
+- Redigera befintliga
+- Ta bort utbyten
+- Importera CSV
+- Exportera CSV
+
+=====================================================
+
+BEHÖVER HJÄLP?
+Läs README.md för detaljerad information!
+
+=====================================================

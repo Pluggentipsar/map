@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Utbyten</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">
+                <span class="logo-icon">⚙️</span>
+                Admin Panel
+            </h1>
+            <div class="header-actions">
+                <button id="themeToggle" class="btn-icon" title="Byt tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <a href="index.html" class="btn-secondary">← Tillbaka till karta</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-content">
+                <h3 class="sidebar-title">Snabbåtgärder</h3>
+
+                <button id="addNewBtn" class="action-btn">
+                    <span class="btn-emoji">➕</span>
+                    Lägg till utbyte
+                </button>
+
+                <button id="importCSVBtn" class="action-btn">
+                    <span class="btn-emoji">📥</span>
+                    Importera CSV
+                </button>
+
+                <button id="exportCSVBtn" class="action-btn">
+                    <span class="btn-emoji">📤</span>
+                    Exportera CSV
+                </button>
+
+                <button id="clearDataBtn" class="action-btn danger">
+                    <span class="btn-emoji">🗑️</span>
+                    Rensa all data
+                </button>
+
+                <div class="stats-summary">
+                    <h4>Statistik</h4>
+                    <div class="stat-row">
+                        <span>Totalt utbyten:</span>
+                        <strong id="adminTotalCount">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Erasmus:</span>
+                        <strong id="adminErasmusCount">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Nordplus:</span>
+                        <strong id="adminNordplusCount">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>TCA:</span>
+                        <strong id="adminTCACount">0</strong>
+                    </div>
+                    <div class="stat-row">
+                        <span>Atlas:</span>
+                        <strong id="adminAtlasCount">0</strong>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Search and Filter -->
+            <div class="admin-toolbar">
+                <div class="search-box">
+                    <input type="text" id="adminSearchInput" placeholder="Sök i utbyten..." class="search-input">
+                    <span class="search-icon">🔍</span>
+                </div>
+
+                <select id="adminCategoryFilter" class="select-input">
+                    <option value="">Alla kategorier</option>
+                    <option value="Erasmus">Erasmus</option>
+                    <option value="Nordplus">Nordplus</option>
+                    <option value="TCA">TCA</option>
+                    <option value="Atlas">Atlas</option>
+                </select>
+            </div>
+
+            <!-- Data Table -->
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Destination</th>
+                            <th>Aktivitet</th>
+                            <th>Kurs/Skola</th>
+                            <th>Enhet</th>
+                            <th>Kategori</th>
+                            <th>Åtgärder</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataTableBody">
+                        <tr>
+                            <td colspan="7" class="no-data">Laddar data...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Add/Edit -->
+    <div id="exchangeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Lägg till utbyte</h2>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+
+            <form id="exchangeForm" class="modal-form">
+                <input type="hidden" id="exchangeId">
+
+                <div class="form-group">
+                    <label for="destination">Destination *</label>
+                    <input type="text" id="destination" required
+                           placeholder="ex. Stockholm, Sverige">
+                    <small>Format: Stad, Land</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="activity">Aktivitet *</label>
+                    <select id="activity" required>
+                        <option value="">Välj aktivitet</option>
+                        <option value="Kurs">Kurs</option>
+                        <option value="Jobbskugga">Jobbskugga</option>
+                        <option value="Elevresa">Elevresa</option>
+                        <option value="Studiebesök">Studiebesök</option>
+                        <option value="Planering">Planering</option>
+                        <option value="Kontaktseminarium">Kontaktseminarium</option>
+                        <option value="EM">EM</option>
+                        <option value="FB">FB</option>
+                        <option value="JS">JS</option>
+                        <option value="Atlas planering">Atlas planering</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="course">Kurs/Besökande skola</label>
+                    <input type="text" id="course"
+                           placeholder="ex. Leadership and management for school principals">
+                </div>
+
+                <div class="form-group">
+                    <label for="school">Enhet/Skola *</label>
+                    <input type="text" id="school" required
+                           placeholder="ex. Junedalskolan">
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Kategori *</label>
+                    <select id="category" required>
+                        <option value="">Välj kategori</option>
+                        <option value="Erasmus">Erasmus</option>
+                        <option value="Nordplus">Nordplus</option>
+                        <option value="TCA">TCA</option>
+                        <option value="Atlas">Atlas</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelBtn">Avbryt</button>
+                    <button type="submit" class="btn-primary" id="saveBtn">Spara</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hidden file input for CSV import -->
+    <input type="file" id="csvFileInput" accept=".csv" style="display: none;">
+
+    <!-- PapaParse for CSV -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/geocoding.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

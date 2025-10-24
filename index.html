@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internationella Utbyten - Interaktiv Karta</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">
+                <span class="logo-icon">🌍</span>
+                Internationella Utbyten
+            </h1>
+            <div class="header-actions">
+                <button id="themeToggle" class="btn-icon" title="Byt tema">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <a href="admin.html" class="btn-primary">Admin Panel</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <!-- Search -->
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Sök destination, skola, kurs..." class="search-input">
+                    <span class="search-icon">🔍</span>
+                </div>
+
+                <!-- Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalCount">0</div>
+                        <div class="stat-label">Totalt utbyten</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="countryCount">0</div>
+                        <div class="stat-label">Länder</div>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="filter-section">
+                    <h3 class="filter-title">Filtrera per kategori</h3>
+                    <div class="filter-group">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="Erasmus" checked>
+                            <span class="checkbox-custom erasmus"></span>
+                            <span class="filter-label">Erasmus</span>
+                            <span class="filter-count" id="count-erasmus">0</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="Nordplus" checked>
+                            <span class="checkbox-custom nordplus"></span>
+                            <span class="filter-label">Nordplus</span>
+                            <span class="filter-count" id="count-nordplus">0</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="TCA" checked>
+                            <span class="checkbox-custom tca"></span>
+                            <span class="filter-label">TCA</span>
+                            <span class="filter-count" id="count-tca">0</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" value="Atlas" checked>
+                            <span class="checkbox-custom atlas"></span>
+                            <span class="filter-label">Atlas</span>
+                            <span class="filter-count" id="count-atlas">0</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3 class="filter-title">Aktivitetstyp</h3>
+                    <div class="filter-group">
+                        <select id="activityFilter" class="select-input">
+                            <option value="">Alla aktiviteter</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <h3 class="filter-title">Skola/Enhet</h3>
+                    <div class="filter-group">
+                        <select id="schoolFilter" class="select-input">
+                            <option value="">Alla skolor</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Reset Button -->
+                <button id="resetFilters" class="btn-secondary btn-full">
+                    Återställ filter
+                </button>
+
+                <!-- Legend -->
+                <div class="legend">
+                    <h3 class="legend-title">Förklaring</h3>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <div class="legend-marker erasmus"></div>
+                            <span>Erasmus</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-marker nordplus"></div>
+                            <span>Nordplus</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-marker tca"></div>
+                            <span>TCA</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-marker atlas"></div>
+                            <span>Atlas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Map Container -->
+        <main class="map-container">
+            <div id="map"></div>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Laddar karta...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- PapaParse for CSV -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/geocoding.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/map.js"></script>
+</body>
+</html>
