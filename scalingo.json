@@ -1,0 +1,15 @@
+{
+  "name": "Internationella Utbyten Karta",
+  "description": "Interaktiv kartapplikation för att visualisera internationella utbytesprogram",
+  "formation": {
+    "web": {
+      "amount": 1,
+      "size": "S"
+    }
+  },
+  "env": {
+    "NODE_ENV": {
+      "value": "production"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "internationella-utbyten-karta",
+  "version": "1.0.0",
+  "description": "Interaktiv karta för internationella utbytesprogram",
+  "scripts": {
+    "start": "http-server -p $PORT -a 0.0.0.0"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}
